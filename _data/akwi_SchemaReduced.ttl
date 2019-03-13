@@ -1,0 +1,130 @@
+@prefix schema: <https://schema.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix akwi: <https://bmake.th-brandenburg.de/akwi/> .
+
+
+### Definition of Re-Used Classes ### 
+akwi:index a schema:WebPage .
+schema:CreativeWork a owl:Class ;
+			rdfs:label "CreativeWork" ;
+			rdfs:isDefinedBy <https://schema.org/> .
+			
+schema:Course a owl:Class ;
+			rdfs:label "Course" ;
+			rdfs:subClassOf schema:CreativeWork ;
+			rdfs:isDefinedBy <https://schema.org/> .
+								
+schema:Person a owl:Class ;
+			rdfs:label "Person" ;
+			rdfs:isDefinedBy <https://schema.org/> .
+	
+schema:Organization a owl:Class ;
+			rdfs:label "Organization" ;
+			rdfs:isDefinedBy <https://schema.org/> .
+			
+schema:CollegeOrUniversity a owl:Class ;
+			rdfs:label "CollegeOrUniversity" ;
+			rdfs:subClassOf schema:Organization ;
+			rdfs:isDefinedBy <https://schema.org/> .
+			
+schema:Intangible a owl:Class ;
+			rdfs:label "Intangible" ;
+			rdfs:isDefinedBy <https://schema.org/> .
+			
+schema:PostalAddress a owl:Class ;
+			rdfs:label "PostalAddress" ;
+			rdfs:subClassOf schema:Intangible ;
+			rdfs:isDefinedBy <https://schema.org/> .		
+
+schema:Text a rdfs:Class ;
+			rdfs:label "Text" ;
+			rdfs:isDefinedBy <https://schema.org/> .
+
+schema:URL a rdfs:Class ;
+			rdfs:label "URL" ;
+			rdfs:isDefinedBy <https://schema.org/> .
+			
+
+### Definition of specific Classes ### 
+akwi:DepartmentOrFaculty a owl:Class ;
+			rdfs:label "DepartmentOrFaculty" ;
+			rdfs:subClassOf schema:CollegeOrUniversity ;
+			rdfs:isDefinedBy <https://bmake.th-brandenburg.de/akwi/> .
+			
+### Named Individuals ###
+akwi:AKWI a owl:NamedIndividual ;
+          a schema:Organization ;
+			rdfs:label "AKWI" ;
+			rdfs:isDefinedBy <https://bmake.th-brandenburg.de/akwi/> .
+			
+
+### Object properties ###
+
+schema:accountablePerson a owl:ObjectProperty ;
+			rdfs:label "accountablePerson" ;
+			rdfs:domain schema:Course ;
+			rdfs:range schema:Person ;
+			rdfs:isDefinedBy <https://schema.org/> .
+
+schema:provider a owl:ObjectProperty ;
+			rdfs:label "provider" ;
+			rdfs:domain schema:Course ;
+			rdfs:range akwi:DepartmentOrFaculty ;
+			rdfs:isDefinedBy <https://schema.org/> .
+
+schema:employee a owl:ObjectProperty ;
+			rdfs:label "employee" ;
+			rdfs:domain akwi:DepartmentOrFaculty ;
+			rdfs:range schema:Person ;
+			rdfs:isDefinedBy <https://schema.org/> .
+
+schema:member a owl:ObjectProperty ;
+			rdfs:label "member" ;
+			rdfs:domain akwi:AKWI ;
+			rdfs:range akwi:DepartmentOrFaculty ;
+			rdfs:isDefinedBy <https://schema.org/> .
+		
+schema:department a owl:ObjectProperty ;
+			rdfs:label "department" ;
+			rdfs:domain schema:CollegeOrUniversity ;
+			rdfs:range akwi:DepartmentOrFaculty ;
+			rdfs:isDefinedBy <https://schema.org/> .
+	
+schema:address a owl:ObjectProperty ;
+			rdfs:label "address" ;
+			rdfs:domain  schema:Organization ;
+			rdfs:range schema:PostalAddress ;
+			rdfs:isDefinedBy <https://schema.org/> .
+
+
+### Datatype Properties ###
+schema:name a owl:DatatypeProperty ;
+			rdfs:label "name"@en ;
+			rdfs:domain schema:Organization ;
+			rdfs:range schema:Text ;
+			rdfs:isDefinedBy <https://schema.org/> .
+					
+schema:url a owl:DatatypeProperty ;
+			rdfs:label "url" ;
+			rdfs:domain schema:Organization ;
+			rdfs:range schema:URL ;
+			rdfs:isDefinedBy <https://schema.org/> .
+			
+schema:legalName a owl:DatatypeProperty ;
+			rdfs:label "legalName" ;
+			rdfs:domain schema:Organization ;
+			rdfs:range schema:Text ;
+			rdfs:isDefinedBy <https://schema.org/> .
+			
+
+
